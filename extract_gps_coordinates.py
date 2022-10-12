@@ -1,5 +1,6 @@
 from exif import Image
 img_path = 'static/test.jpg'
+from geopy.geocoders import Nominatim
 
 def decimal_coords(coords, ref):
     decimal_degrees = coords[0] + coords[1] / 60 + coords[2] / 3600
@@ -23,5 +24,8 @@ def image_coordinates(img_path):
     else:
         print ("The Image has no EXIF information")
     print(f"Image {src.name}, OS Version:{img.get('software', 'Not Known')} ------")
-    return(f"Was taken: {img.datetime_original}, and has coordinates:{coords}")
+    
+    geolocator = Nominatim(user_agent="coordinateconverter")
+    location = geolocator.reverse(coords)
+    return(f"Was taken: {img.datetime_original}, and has coordinates:{location}")
 
