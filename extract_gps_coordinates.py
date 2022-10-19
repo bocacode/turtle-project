@@ -20,7 +20,7 @@ def image_coordinates(img_path):
                       decimal_coords(img.gps_longitude,
                       img.gps_longitude_ref))
         except AttributeError:
-            print ("No Coordinates")
+            print ("No crackers")
     else:
         print ("The Image has no EXIF information")
     print(f"Image {src.name}, OS Version:{img.get('software', 'Not Known')} ------")
